@@ -12,7 +12,7 @@ Install Carmel. After this Carmel will be installed as $D/carmel/bin/carmel.
 *> cd $D*  
 *> git clone https://github.com/irrawaddy28/PTgen.git* (forked from https://github.com/ws15code/PTgen.git)  
 
-This will create a directory "PTgen". 
+This will create a directory "PTgen".   
 *> ls -l*  
 *total 8*  
 *drwxr-xr-x  7  4096 May  6 19:26 PTgen*    
@@ -24,11 +24,9 @@ a) Build everything under PTgen/src
 *> cd $D/PTgen*  
 *> cd $D/src*  
 *> make*  
-(make will prompt you to enter fst src/include path.   
+*#make will prompt you to enter fst src/include path.   
 I entered: /ws/ifp-48_1/hasegawa/amitdas/work/ws15-pt-data/kaldi-trunk/tools/openfst/src/include  
-Now compilation should go through fine and you should see be able to see two binary files: aligner, compute_turker_similarity)  
-
-
+Now compilation should go through fine and you should see be able to see two binary files: aligner, compute_turker_similarity*    
 # Step 3. Now run the main script from $D
 *> cd $D*  
 *> ./run.sh test/ws15/settings-swahili*  
@@ -39,7 +37,7 @@ The script can generate two kinds of lattices:
 
 **Language model rescored lattices**: These lattices have *.GTPLM extension. These are rescored the lattices since they have rescored using the language model (G). Such lattices are primarily used in stage 15 for oracle error evaluation.  
 
-a) Generate raw lattices for adapt set (the utts in adapt set are the same as the PT training set in the ASR stage)
+a) Generate raw lattices for adapt set (the utts in adapt set are the same as the PT training set in the ASR stage)  
 *#makeGTPLM=1		# Used by stage 14.*  
 *#evaloracle=1		# Used by stage 15.*    
 *#debug=1	        # Used by stage 15.*  
@@ -50,7 +48,7 @@ a) Generate raw lattices for adapt set (the utts in adapt set are the same as th
 *startstage=1*   
 *endstage=14*  
 
-b) Generate raw lattices for test set (the utts in test set is the same as the test set in the ASR stage)
+b) Generate raw lattices for test set (the utts in test set is the same as the test set in the ASR stage)  
 *#makeGTPLM=1		# Used by stage 14.*  
 *#evaloracle=1		# Used by stage 15.*  
 *#debug=1	        # Used by stage 15.*  
@@ -61,7 +59,7 @@ b) Generate raw lattices for test set (the utts in test set is the same as the t
 *startstage=14*  
 *endstage=14*  
 
-c) Generate language model rescored lattices (*.GTPLM) for oracle error rate evaulation of test set
+c) Generate language model rescored lattices (*.GTPLM) for oracle error rate evaulation of test set  
 *makeGTPLM=1		    # Used by stage 14.*  
 *evaloracle=1	    # Used by stage 15.*  
 *debug=1			    # Used by stage 15.*  
@@ -74,10 +72,10 @@ c) Generate language model rescored lattices (*.GTPLM) for oracle error rate eva
 
 # Step 5. If you generated the GTPLM lattices, then use the following settings to evalute 1-best or oracle error in stage 15  
 a) 1-best error: Compute the edit distance between the 1-best path in GTPLM lattice and the native transcription    
-*evaloracle=  *  
+*evaloracle=*  
 
 b) Oracle error: Compute the edit distance between the GTPLM lattice and the native transcription  
-*evaloracle=1 *  
+*evaloracle=1*    
 
 Note:  
 1. How to generate the bigram language model fst for a test language used in PTgen?  
