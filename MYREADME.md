@@ -26,12 +26,8 @@ a) Build everything under PTgen/src
 *#make will prompt you to enter fst src/include path.   
 I entered: /ws/ifp-48_1/hasegawa/amitdas/work/ws15-pt-data/kaldi-trunk/tools/openfst/src/include  
 Now compilation should go through fine and you should see be able to see two binary files: aligner, compute_turker_similarity*    
-# Step 3. Now run the main script from $D
-*> cd $D/PTgen*  
-*> ./run.sh test/ws15/settings-swahili*  
-
-# Step 4. Use the following task specific settings to generate lattices in stage 14  
-The script can generate two kinds of lattices:  
+# Step 3. Modify the *settings file* to generate TPLM (or GTPLM) lattices in stage 14 (or stage 15) 
+A sample *settings file* is **test/ws15/settings-swahili**. Based on how you modify the parameters in this settings file, you can generate two kinds of lattices:  
 **Raw lattices:** These lattices have *.TPLM extension. These are not rescored using the language model (G) since we do the language model rescoring explicitly within our MAP adaptation.  
 
 **Language model rescored lattices**: These lattices have *.GTPLM extension. These are rescored the lattices since they have rescored using the language model (G). Such lattices are primarily used in stage 15 for oracle error evaluation.  
@@ -55,7 +51,7 @@ b) Generate raw lattices for test set (the utts in test set is the same as the t
 *makeTPLM=1		    # Used by stage 14.*  
 *#decode_for_adapt=	# Used by stage 14.  Omit stage 15.*  
 
-*startstage=14*  
+*startstage=1*  
 *endstage=14*  
 
 c) Generate language model rescored lattices (*.GTPLM) for oracle error rate evaulation of test set  
@@ -66,15 +62,20 @@ c) Generate language model rescored lattices (*.GTPLM) for oracle error rate eva
 *#makeTPLM=1		    # Used by stage 14.*  
 *#decode_for_adapt=1	# Used by stage 14.  Omit stage 15.*  
 
-*startstage=14*  
+*startstage=1*  
 *endstage=15*  
 
-# Step 5. If you generated the GTPLM lattices, then use the following settings to evalute 1-best or oracle error in stage 15  
+# Step 4. If you chose to generate the GTPLM lattices, then use the following settings to evalute 1-best or oracle error in stage 15  
 a) 1-best error: Compute the edit distance between the 1-best path in GTPLM lattice and the native transcription    
 *evaloracle=*  
 
 b) Oracle error: Compute the edit distance between the GTPLM lattice and the native transcription  
 *evaloracle=1*    
+
+# Step 5. Now run the main script  
+*> cd $D/PTgen*  
+*> ./run.sh test/ws15/settings-swahili*  
+This should generate a directory *Tmp/Exp/swahili*  
 
 Note:  
 1. How to generate the bigram language model fst for a test language used in PTgen?  
