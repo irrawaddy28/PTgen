@@ -21,8 +21,7 @@ This will create a directory "PTgen".
 
 # Step 2: Build the necessary dependencies  
 a) Build everything under PTgen/src  
-*> cd $D/PTgen*  
-*> cd $D/src*  
+*> cd $D/PTgen/src*  
 *> make*  
 *#make will prompt you to enter fst src/include path.   
 I entered: /ws/ifp-48_1/hasegawa/amitdas/work/ws15-pt-data/kaldi-trunk/tools/openfst/src/include  
