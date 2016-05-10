@@ -27,7 +27,7 @@ a) Build everything under PTgen/src
 I entered: /ws/ifp-48_1/hasegawa/amitdas/work/ws15-pt-data/kaldi-trunk/tools/openfst/src/include  
 Now compilation should go through fine and you should see be able to see two binary files: aligner, compute_turker_similarity*    
 # Step 3. Now run the main script from $D
-*> cd $D*  
+*> cd $D/PTgen*  
 *> ./run.sh test/ws15/settings-swahili*  
 
 # Step 4. Use the following task specific settings to generate lattices in stage 14  
